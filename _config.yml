@@ -1,7 +1,7 @@
 title: Dependensee
 description: A tool to help make maven version searching easier.
-baseurl: ""
-url: "https://palmmc.github.io/Dependensee"
+baseurl: "/Dependensee"
+url: "https://palmmc.github.io"
 markdown: kramdown
 theme: minima
 exclude:
@@ -16,3 +16,6 @@ exclude:
   - vendor
   - Gemfile
   - Gemfile.lock
+include:
+  - assets
+check_gitignore: false
