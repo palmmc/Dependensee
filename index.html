@@ -1,0 +1,132 @@
+---
+layout: null
+---
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft Version Manager</title>
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;600&display=swap"
+        rel="stylesheet">
+    <script>window.DEPENDENSEE_BASE = "{{ '/' | relative_url }}";</script>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <img src="{{ '/assets/header.png' | relative_url }}" alt="Dependensee" class="header-logo">
+            <p class="subtitle"><span class="google-exclaimer">GOOGLE!</span> What <span id="dynamic-dependency"
+                    class="dynamic-wrap">Fabric</span> is version for <span id="dynamic-version"
+                    class="dynamic-wrap">1.21.1</span>?!!</p>
+        </header>
+
+        <div class="main-grid">
+            <div class="card rough-paper">
+                <h2>Input your Stuff</h2>
+                <div class="input-group">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <label for="mc-version">Minecraft Version</label>
+                        <label class="check-item" style="margin-bottom: 0.5rem; font-size: 0.8rem;">
+                            <input type="checkbox" id="check-all-versions"> Show All
+                        </label>
+                    </div>
+                    <select id="mc-version">
+                        <option value="">Loading versions...</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Include Dependencies</label>
+                    <div id="dependency-checks-container" class="platform-checks rough-paper">
+                        <!-- Checkboxes for dependencies -->
+                    </div>
+                </div>
+
+                <div id="dependency-inputs">
+                    <!-- Dependency stuff -->
+                </div>
+                <div class="input-group">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                        <label>Mod Implementations (Modrinth)</label>
+                        <button id="add-mod-btn" class="add-btn">+ Add Mod</button>
+                    </div>
+                    <div id="mod-implementations-container">
+                        <!-- Mod cards -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="card rough-paper">
+                <h2>Gradle Configuration</h2>
+                <div class="results-container">
+                    <textarea id="results-output" readonly rows="12"
+                        placeholder="Select a Minecraft version to begin..."></textarea>
+                    <button id="copy-btn" class="copy-btn">Copy to Clipboard</button>
+                </div>
+                <div class="disclaimer">
+                    <b>Dependensee</b> is not perfect, and should <b>not</b> replace manual dependency searches.<br>You
+                    are
+                    responsible
+                    to take caution when using it and verify that the versions it finds are correct for your use.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="settings-btn" id="open-settings" title="Settings">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path
+                d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z">
+            </path>
+            <circle cx="12" cy="12" r="3"></circle>
+        </svg>
+    </div>
+
+    <!-- Settings -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Settings</h2>
+                <span class="close-modal" id="close-settings">&times;</span>
+            </div>
+            <div class="modal-content">
+                <div class="settings-section">
+                    <h3>General</h3>
+                    <div class="toggle-group">
+                        <span>Match First Dependencies</span>
+                        <label class="switch">
+                            <input type="checkbox" id="match-first-deps">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="toggle-group">
+                        <span>Match First Implementations</span>
+                        <label class="switch">
+                            <input type="checkbox" id="match-first-mods">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div id="dynamic-settings">
+                    <!-- Dependency stuff here -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="add-btn" id="close-settings-footer">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="{{ '/assets/js/main.js' | relative_url }}"></script>
+</body>
+
+</html>

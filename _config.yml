@@ -1,0 +1,18 @@
+title: Dependensee
+description: A tool to help make maven version searching easier.
+baseurl: ""
+url: "https://palmmc.github.io/Dependensee"
+markdown: kramdown
+theme: minima
+exclude:
+  - node_modules
+  - package.json
+  - package-lock.json
+  - tsconfig.json
+  - vite.config.ts
+  - scripts
+  - src
+  - dist
+  - vendor
+  - Gemfile
+  - Gemfile.lock

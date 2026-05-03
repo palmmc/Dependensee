@@ -1,0 +1,25 @@
+{
+  "name": "dependensee",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "update-data": "tsx scripts/update-data.ts",
+    "build": "vite build",
+    "dev": "vite"
+  },
+  "keywords": [],
+  "author": "palm1",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^25.6.0",
+    "fast-xml-parser": "^5.7.2",
+    "fs-extra": "^11.3.4",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.10"
+  }
+}

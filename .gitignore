@@ -1,0 +1,15 @@
+# Site
+_site
+*.gem
+
+# Dependencies
+/vendor/
+/node_modules/
+
+# Jekyll
+.bundle/
+.jekyll-cache/
+
+# Build artifacts
+assets/js/
+assets/data/
