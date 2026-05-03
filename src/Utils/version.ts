@@ -1,11 +1,20 @@
+function getStabilityScore(v: string): number {
+  const low = v.toLowerCase();
+  if (low.includes('rc')) return 1;
+  if (low.includes('pre')) return 2;
+  if (low.includes('beta')) return 3;
+  if (low.includes('alpha')) return 4;
+  if (low.includes('snapshot')) return 5;
+  return 0;
+}
+
 export function getBestVersion(versions: string[], matchFirst: boolean, filter?: (v: string) => boolean): string {
   let filtered = filter ? versions.filter(filter) : [...versions];
   if (filtered.length === 0) return 'Not found';
 
-  const nonSnapshots = filtered.filter(v => !v.toLowerCase().includes('snapshot'));
-  if (nonSnapshots.length > 0) {
-    filtered = nonSnapshots;
-  }
+  const stabilityScores = filtered.map(v => ({ v, score: getStabilityScore(v) }));
+  const minScore = Math.min(...stabilityScores.map(s => s.score));
+  filtered = stabilityScores.filter(s => s.score === minScore).map(s => s.v);
 
   filtered.sort((a, b) => {
     const aStartsNum = /^\d/.test(a);
@@ -19,6 +28,7 @@ export function getBestVersion(versions: string[], matchFirst: boolean, filter?:
 
   return matchFirst ? filtered[filtered.length - 1] : filtered[0];
 }
+
 
 export function compareVersions(v1: string, v2: string): number {
   const parts1 = v1.split('.').map(Number);
