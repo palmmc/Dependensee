@@ -4,7 +4,7 @@ import { fetchJson } from '../src/Utils/fetch';
 
 const DATA_DIR = 'assets/data';
 const OUTPUT_FILE = path.join(DATA_DIR, 'versions.json');
-const DEPS_DIR = path.join(process.cwd(), 'src', 'dependencies');
+const DEPS_DIR = path.join(process.cwd(), 'src', 'Dependencies');
 
 async function main() {
   await fs.ensureDir(DATA_DIR);
